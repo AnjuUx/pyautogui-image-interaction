@@ -17,49 +17,6 @@ if largura < 1280 or altura < 720:
 py.PAUSE = 1
 
 
-
-
-# def clicar_em_imagem(imagem, precisao=0.8, intervalo=3, timeout=None):
-
-#     print(f"🔍 Procurando '{imagem}' para clicar...")
-#     inicio = time.time()
-
-#     while True:
-#         time.sleep(intervalo)
-
-#         # Carrega a imagem de referência
-#         template = cv2.imread(imagem)
-#         if template is None:
-#             print(f"❌ Erro ao carregar a imagem: {imagem}")
-#             return False
-
-#         # Captura a tela e converte para BGR
-#         screenshot = py.screenshot()
-#         tela = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
-
-#         # Aplica template matching (comparação de imagem)
-#         resultado = cv2.matchTemplate(tela, template, cv2.TM_CCOEFF_NORMED)
-#         _, max_val, _, max_loc = cv2.minMaxLoc(resultado)
-
-#         # Verifica se a correspondência é suficiente
-#         if max_val >= precisao:
-#             altura, largura = template.shape[:2]
-#             centro_x = max_loc[0] + largura // 2
-#             centro_y = max_loc[1] + altura // 2
-
-#             print(f"✅ Imagem encontrada!{imagem} Clicando em ({centro_x}, {centro_y})")
-#             py.moveTo(centro_x, centro_y, duration=0.5)
-#             py.click()
-#             return True
-#         else:
-#             print("⏳ Imagem ainda não encontrada... tentando novamente.")
-
-#         # Verifica se há tempo limite e se foi atingido
-#         if timeout and (time.time() - inicio > timeout):
-#             print(f"⏱️ Timeout atingido para '{imagem}'. Encerrando busca.")
-#             return False
-
-
 def clicar_em_imagem(imagem, precisao=0.8, intervalo=3, timeout=None, acao="clicar"):
     print(f"🔍 Procurando '{imagem}' na tela...")
     inicio = time.time()
