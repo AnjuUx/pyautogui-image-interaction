@@ -55,8 +55,10 @@ def clicar_em_imagem(imagem, precisao=0.8, intervalo=3, timeout=None, acao="clic
             return False
         
 def fechar_chrome(mover_para_monitor_principal=True):
+    
 
     nome_janela = "Google Chrome"
+    
     
     # Busca janelas com o nome (mesmo que estejam minimizadas)
     janelas = gw.getWindowsWithTitle(nome_janela)
@@ -108,12 +110,35 @@ def renomear_arquivo_ads(pasta_download):
     print(f"✅ Renomeado: {ultimo} → {caminho_novo}")
     return novo_nome
 
+def mover_para_monitor_principal(titulo_janela):
+    janelas = gw.getWindowsWithTitle(titulo_janela)
+    if not janelas:
+        print(f"❌ Janela '{titulo_janela}' não encontrada.")
+        return
+
+    janela = janelas[0]
+
+    if janela.isMinimized:
+        janela.restore()
+        time.sleep(0.5)
+
+    janela.activate()
+    time.sleep(0.5)
+
+    janela.moveTo(0, 0)
+    print(f"✅ Janela '{janela.title}' movida para o monitor principal.")
+
+
+
+
 
 fechar_chrome()
 py.press("win")
 py.write("chrome")
 clicar_em_imagem("img/chrom.png")
+mover_para_monitor_principal("Google Chrome")
 clicar_em_imagem ("img/perfil.png")
+mover_para_monitor_principal("Google Chrome")
 
 clicar_em_imagem ("img/over.png")
 clicar_em_imagem ("img/camp.png")

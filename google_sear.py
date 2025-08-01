@@ -8,12 +8,6 @@ import glob
 from datetime import datetime
 
 
-largura, altura = py.size()
-print(f"🖥️ Resolução detectada: {largura}x{altura}")
-
-# Defina a resolução mínima esperada
-if largura < 1280 or altura < 720:
-    print("⚠️ Resolução muito baixa. O script pode não funcionar corretamente.")
 py.PAUSE = 1
 
 
@@ -94,6 +88,24 @@ def fechar_chrome(mover_para_monitor_principal=True):
     py.hotkey("alt", "f4")
     print("❌ Chrome foi fechado com sucesso.")
 
+def mover_para_monitor_principal(titulo_janela):
+    janelas = gw.getWindowsWithTitle(titulo_janela)
+    if not janelas:
+        print(f"❌ Janela '{titulo_janela}' não encontrada.")
+        return
+
+    janela = janelas[0]
+
+    if janela.isMinimized:
+        janela.restore()
+        time.sleep(0.5)
+
+    janela.activate()
+    time.sleep(0.5)
+
+    janela.moveTo(0, 0)
+    print(f"✅ Janela '{janela.title}' movida para o monitor principal.")
+
 
 fechar_chrome()
 time.sleep(2)
@@ -101,7 +113,9 @@ time.sleep(2)
 py.press("win")
 py.write("chrome")
 clicar_em_imagem("img/chrom.png")
+mover_para_monitor_principal("Google Chrome")
 clicar_em_imagem ("img/perfil.png")
+mover_para_monitor_principal("Google Chrome")
 clicar_em_imagem ("img/over.png")
 clicar_em_imagem ("img/camp.png")
 clicar_em_imagem ("img/ins.png")
