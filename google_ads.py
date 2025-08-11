@@ -3,6 +3,7 @@ import cv2
 import pyautogui as py
 import numpy as np
 import pygetwindow as gw
+from pywinauto import Desktop
 import os
 import glob
 from datetime import datetime   
@@ -85,15 +86,12 @@ def fechar_chrome(mover_para_monitor_principal=True):
     print("❌ Chrome foi fechado com sucesso.")
 
 def renomear_arquivo_ads(pasta_download):
-    data_atual = datetime.now().strftime("%Y%m")  # Ex: 202507
+    data_atual = datetime.now().strftime("%Y%m") 
     novo_nome = f"base_google_ads_{data_atual}.csv"
     caminho_novo = os.path.join(pasta_download, novo_nome)
 
-
-
-  
     arquivos =(
-        glob.glob(os.path.join(pasta_download, "Campaign report*.csv " ))
+        glob.glob(os.path.join(pasta_download, "Campaign report*.csv"))
         or glob.glob(os.path.join(pasta_download, "Relatório de campanha*.csv"))
     )
 
@@ -139,14 +137,14 @@ clicar_em_imagem ("img/perfil.png")
 mover_para_monitor_principal("Google Chrome")
 clicar_em_imagem ("img/over.png")
 
-clicar_em_imagem ("img/ads.png", acao="detectar")
-py.rightClick()
-clicar_em_imagem("img/tradu.png")
-clicar_em_imagem("img/pontos.png")
-clicar_em_imagem("img/idiomas.png")
-clicar_em_imagem("img/seta_idioma.png")
-py.write("inglês")
-py.press("enter")
+# clicar_em_imagem ("img/ads.png", acao="detectar")
+# py.rightClick()
+# clicar_em_imagem("img/tradu.png")
+# clicar_em_imagem("img/pontos.png")
+# clicar_em_imagem("img/idiomas.png")
+# clicar_em_imagem("img/seta_idioma.png")
+# py.write("inglês")
+# py.press("enter")
 
 
 clicar_em_imagem ("img/camp.png")

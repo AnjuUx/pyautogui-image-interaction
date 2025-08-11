@@ -106,45 +106,24 @@ def mover_para_monitor_principal(titulo_janela):
     janela.moveTo(0, 0)
     print(f"✅ Janela '{janela.title}' movida para o monitor principal.")
 
-
-fechar_chrome()
-time.sleep(2)
-
-py.press("win")
-py.write("chrome")
-clicar_em_imagem("img/chrom.png")
-mover_para_monitor_principal("Google Chrome")
-clicar_em_imagem ("img/perfil.png")
-mover_para_monitor_principal("Google Chrome")
-clicar_em_imagem ("img/over.png")
-clicar_em_imagem ("img/ads.png", acao="detectar")
-py.rightClick()
-clicar_em_imagem("img/tradu.png")
-clicar_em_imagem("img/pontos.png")
-clicar_em_imagem("img/idiomas.png")
-clicar_em_imagem("img/seta_idioma.png")
-py.write("inglês")
-py.press("enter")
-clicar_em_imagem ("img/camp.png")
-clicar_em_imagem ("img/ins.png")
-clicar_em_imagem ("img/sea.png")
-clicar_em_imagem ("img/data.png")
-clicar_em_imagem ("img/this.png")
-clicar_em_imagem ("img/dow.png")
-clicar_em_imagem ("img/csv.png")
 def renomear_arquivo_ads(pasta_download):
     data_atual = datetime.now().strftime("%Y%m") 
     novo_nome = f"base_google_Search_{data_atual}.csv"
     caminho_novo = os.path.join(pasta_download, novo_nome)
 
+
+
+  
     arquivos =(
-        glob.glob(os.path.join(pasta_download, "Search terms report*.csv " ))
-        or glob.glob(os.path.join(pasta_download, "Relatório de locais correspondentes*.csv"))
+        glob.glob(os.path.join(pasta_download, "Search terms report*.csv"))
+        or
+        glob.glob(os.path.join(pasta_download, "Relatório de locais correspondentes*.csv"))
     )
+
     arquivos.sort(key=os.path.getmtime)
 
     if not arquivos:
-        print("❌ Nenhum arquivo 'Search terms report*.csv' encontrado.")
+        print("❌ Campaign report*.csv' encontrado.")
         return None
 
     if os.path.exists(caminho_novo):
@@ -156,15 +135,38 @@ def renomear_arquivo_ads(pasta_download):
     print(f"✅ Renomeado: {ultimo} → {caminho_novo}")
     return novo_nome
 
+
+fechar_chrome()
+time.sleep(2)
+
+py.press("win")
+py.write("chrome")
+clicar_em_imagem("img/chrom.png")
+mover_para_monitor_principal("Google Chrome")
+clicar_em_imagem ("img/perfil.png")
+mover_para_monitor_principal("Google Chrome")
+clicar_em_imagem ("img/over.png")
+# clicar_em_imagem ("img/ads.png", acao="detectar")
+# py.rightClick()
+# clicar_em_imagem("img/tradu.png")
+# clicar_em_imagem("img/pontos.png")
+# clicar_em_imagem("img/idiomas.png")
+# clicar_em_imagem("img/seta_idioma.png")
+# py.write("inglês")
+# py.press("enter")
+clicar_em_imagem ("img/camp.png")
+clicar_em_imagem ("img/ins.png")
+clicar_em_imagem ("img/sea.png")
+clicar_em_imagem ("img/data.png")
+clicar_em_imagem ("img/this.png")
+clicar_em_imagem ("img/dow.png")
+clicar_em_imagem ("img/csv.png")
 py.hotkey("ctrl","t")
 clicar_em_imagem("img/share.png")
 clicar_em_imagem("img/pesquisa.png")
 clicar_em_imagem("img/carregar.png")
 clicar_em_imagem("img/arquivo.png")
 
-
-
-# Obtém o nome do arquivo renomeado
 pasta_download = os.path.expanduser("~/Downloads")
 nome_arquivo = renomear_arquivo_ads(pasta_download)
 caminho_completo = os.path.join(nome_arquivo)
@@ -174,6 +176,17 @@ py.write(caminho_completo)
 py.press("enter")
 print(f"📤 Arquivo carregado: {caminho_completo}")
 
+# pasta_download = os.path.expanduser("~/Downloads")
+# caminho_completo = renomear_arquivo_ads(pasta_download)
+
+# if not caminho_completo:
+#     print("🚫 Nenhum arquivo encontrado. Encerrando.")
+#     exit()
+
+# time.sleep(1)
+# py.write(caminho_completo)  
+# py.press("enter")
+# print(f"📤 Arquivo carregado: {caminho_completo}")
 
 
 clicar_em_imagem("img/ok.png", timeout=3,  acao="detectar")
