@@ -104,6 +104,7 @@ def mover_para_monitor_principal(titulo_janela):
     time.sleep(0.5)
 
     janela.moveTo(0, 0)
+    janela.maximize()
     print(f"✅ Janela '{janela.title}' movida para o monitor principal.")
 
 def renomear_arquivo_ads(pasta_download):
@@ -175,19 +176,6 @@ time.sleep(1)
 py.write(caminho_completo)
 py.press("enter")
 print(f"📤 Arquivo carregado: {caminho_completo}")
-
-# pasta_download = os.path.expanduser("~/Downloads")
-# caminho_completo = renomear_arquivo_ads(pasta_download)
-
-# if not caminho_completo:
-#     print("🚫 Nenhum arquivo encontrado. Encerrando.")
-#     exit()
-
-# time.sleep(1)
-# py.write(caminho_completo)  
-# py.press("enter")
-# print(f"📤 Arquivo carregado: {caminho_completo}")
-
 
 clicar_em_imagem("img/ok.png", timeout=3,  acao="detectar")
   

@@ -126,6 +126,7 @@ def mover_para_monitor_principal(titulo_janela):
     time.sleep(0.5)
 
     janela.moveTo(0, 0)
+    janela.maximize()
     print(f"✅ Janela '{janela.title}' movida para o monitor principal.")
 
 fechar_chrome()
